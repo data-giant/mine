@@ -28,11 +28,17 @@ export function set(key, value, cfg) {
     cfg || (cfg = {});
     let date = new Date();
     let e = key + "=" + value;
-    "session" === cfg.expires || (cfg.expires && ("number" == typeof cfg.expires || cfg.expires.toUTCString) ? ("number" == typeof cfg.expires ? date.setTime(date.getTime() + 24 * cfg.expires * 60 * 60 * 1e3) : date = cfg.expires,
-        e += "; expires=" + date.toUTCString()) : (date.setTime(date.getTime() + 63072e7),
-        e += "; expires=" + date.toUTCString())),
-        e += "; path=" + (date.path ? date.path : "/"),
-        e += "; domain=" + date.domain;
+    if (cfg.expires && "number" == typeof cfg.expires) {
+        date.setTime(date.getTime() + 24 * cfg.expires * 60 * 60 * 1e3)
+    } else if(cfg.expires && cfg.expires.toUTCString) {
+        date = cfg.expires;
+    } else {
+        date.setTime(date.getTime() + 63072e7;
+    }
+
+    e += "; expires=" + date.toUTCString()),
+    e += "; path=" + (cfg.path ? cfg.path : "/");
+    e += "; domain=" + cfg.domain;
     document.cookie = e;
 }
 
