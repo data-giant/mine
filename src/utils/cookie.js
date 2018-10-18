@@ -33,10 +33,10 @@ export function set(key, value, cfg) {
     } else if(cfg.expires && cfg.expires.toUTCString) {
         date = cfg.expires;
     } else {
-        date.setTime(date.getTime() + 63072e7;
+        date.setTime(date.getTime() + 63072e7);
     }
 
-    e += "; expires=" + date.toUTCString()),
+    e += "; expires=" + date.toUTCString();
     e += "; path=" + (cfg.path ? cfg.path : "/");
     e += "; domain=" + cfg.domain;
     document.cookie = e;
