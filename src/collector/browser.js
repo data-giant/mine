@@ -222,10 +222,20 @@ function detectBrowser(){
     return Browser ;
 }
 
+class Collector {
+    constructor() {
+        this._info =  {
+            ..._os,
+            ..._screen,
+            ..._browser
+        };
+    }
+    collect() {
+        return this._info;
+    }
 
-export default {
-    ..._os,
-    ..._screen,
-    ..._browser
 }
+
+
+export default Collector
 
