@@ -18,6 +18,10 @@ const { argv } = require('yargs');
 const colors = require('colors');
 const webpack = require('webpack');
 const path = require('path');
+const env = require(`./config/${argv.env}.env`);
+
+console.log('Environment: ' + argv.env);
+console.log(env);
 
 
 colors.setTheme({
@@ -31,19 +35,20 @@ colors.setTheme({
     error: 'red',     // 错误型的日志为红色
 });
 
-let definePlugin = new webpack.DefinePlugin({
-    ENV: JSON.stringify(argv.mode),             // production/development
+let definePlugin = new webpack.DefinePlugin(Object.assign(env, {
+    ENV: JSON.stringify(argv.env),             // production/development
     TERMINAL: JSON.stringify(argv.terminal),    // h5(浏览器环境)/wechat（微信小程序）
-});
+}));
 
 
 const defaultConfig = {};
 
 let config = {
+    mode: argv.env == 'prod'? 'production': 'development',
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: ['main', argv.terminal, argv.mode, 'js'].join('.'),
+        filename: ['main', argv.terminal, argv.env, 'js'].join('.'),
     },
     plugins: [
         definePlugin

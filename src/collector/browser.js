@@ -12,6 +12,7 @@
  */
 
 'use strict';
+import {} from '../core/constants'
 
 
 let _os = {
@@ -66,14 +67,16 @@ function detectOS() {
     } else {
         name = "Unknown";
     }
+    let lang = navigator.language||navigator.userLanguage;
     return {
-        name,
-        version
+        os: name,
+        over: version,
+        lang
     };
 }
 
 function detectBrowser(){
-    let Browser = Browser || (function(window) {
+    let Browser = (function(window) {
         let document = window.document,
             navigator = window.navigator,
             agent = navigator.userAgent.toLowerCase(),
@@ -208,26 +211,29 @@ function detectBrowser(){
         } catch (e) {
 //						console.log(e.message);
         }
-        return {
-            client: System
-        };
+        return System;
 
     })(window);
-    if (Browser.client.name == undefined || Browser.client.name=="") {
-        Browser.client.name = "Unknown";
-        Browser.client.version = "Unknown";
-    }else if(Browser.client.version == undefined){
-        Browser.client.version = "Unknown";
+    if (Browser.name == undefined || Browser.name=="") {
+        Browser.name = "Unknown";
+        Browser.version = "Unknown";
+    }else if(Browser.version == undefined){
+        Browser.version = "Unknown";
     }
-    return Browser ;
+    console.log(Browser);
+    return {
+        brs: Browser.type,      // browser
+        bver: Browser.version,  // browser version
+        title: window.document.title,
+    } ;
 }
 
 class Collector {
     constructor() {
         this._info =  {
             ..._os,
-            ..._screen,
-            ..._browser
+            ..._browser,
+            scr: `${_screen.width}x${_screen.height}`,
         };
     }
     collect() {
