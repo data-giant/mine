@@ -13,13 +13,18 @@
 
 'use strict';
 
-const constants = {
-    EVENT_PAGE_VIEW: 2001,
-    EVENT_CLICK: 2101,
-    EVENT_EXPOSURE: 2201,
-
-    UNKNOW: "unknow",
+const CONFIG = {
+    ULM_CNT: 'miner-ulm-id',
 };
 
-export default constants;
+const EVENTS = {
+    PAGE_VIEW: 2001,
+    CLICK: 2101,
+    EXPOSURE: 2201,
+};
+
+const UNKNOW = 'unknow';
+
+
+export { EVENTS, CONFIG, UNKNOW };
 

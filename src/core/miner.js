@@ -13,12 +13,13 @@
 
 
 'use strict';
-import { get, post } from '../transporter/http';
-import { EVENT_PAGE_VIEW } from 'constants';
+import { get } from '../transporter/http';
+import { CONFIG } from './constants';
 import { buildQuery} from "../utils/url";
 
 class Miner {
-    constructor(collector) {
+    constructor(configurer, collector) {
+        this._configurer = configurer;
         this._collector = collector;
     }
 
@@ -28,6 +29,7 @@ class Miner {
 
     _sendPv() {
         let baseInfo = this._collector.collect();
+        baseInfo['ulm-cnt'] = this._configurer.get(CONFIG.ULM_CNT);
         let url = LOG_SERVER + LOG_KEY + '?' + buildQuery(Object.assign(baseInfo, {
             time: Math.round((new Date()).getTime() / 1000),
             logid: this.logid()
