@@ -13,8 +13,12 @@
 
 'use strict';
 
+/**
+ * Config entry in mata
+ * @type {{ULM_CNT: string}}
+ */
 const CONFIG = {
-    ULM_CNT: 'miner-ulm-id',
+    ULM_CNT: 'miner-ulm-id',        // the ulm id of current page
 };
 
 const EVENTS = {
@@ -23,8 +27,12 @@ const EVENTS = {
     EXPOSURE: 2201,
 };
 
+const TERMINALS = {
+    H5: 'h5'
+};
+
 const UNKNOW = 'unknow';
 
 
-export { EVENTS, CONFIG, UNKNOW };
+export { EVENTS, CONFIG, UNKNOW, TERMINALS };
 

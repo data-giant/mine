@@ -12,7 +12,7 @@
  */
 
 'use strict';
-import {} from '../core/constants'
+import {getQuery} from '../utils/url'
 
 
 let _os = {
@@ -225,17 +225,23 @@ function detectBrowser(){
         brs: Browser.type,      // browser
         bver: Browser.version,  // browser version
         title: window.document.title,
-    } ;
+    };
 }
 
 class Collector {
     constructor() {
+        let ulmUrl = getQuery(window.location.search, 'ulm');
+        let ulmPre = getQuery(window.document.referrer, 'ulm');
         this._info =  {
             ..._os,
             ..._browser,
             scr: `${_screen.width}x${_screen.height}`,
+            pre: window.document.referrer,
+            'ulm-url': ulmUrl? ulmUrl: '',
+            'ulm-pre': ulmPre? ulmPre: '',
         };
     }
+
     collect() {
         return this._info;
     }

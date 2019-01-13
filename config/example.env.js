@@ -15,4 +15,5 @@
 export default {
     LOG_SERVER: JSON.stringify('http://localhost:8000'),
     LOG_KEY:  JSON.stringify('/1.jpg'),
+    MINER_VERSION: JSON.stringify('0.0.1'),
 }

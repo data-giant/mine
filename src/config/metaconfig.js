@@ -17,6 +17,7 @@ class MetaConfig {
         this._store = {};
         this.refresh();
     }
+
     refresh() {
         let nodes = window.document.querySelectorAll('meta[name^="miner-"]');
         console.log(nodes);
@@ -29,12 +30,8 @@ class MetaConfig {
         }
     }
 
-
     get(key) {
-        if (key in this._store) {
-            return this._store[key];
-        }
-        return null;
+        return this._store[key];
     }
 
     set(key, value) {

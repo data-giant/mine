@@ -11,23 +11,23 @@
  *
  */
 
+
 'use strict';
+import Miner from './core/miner'
 import browserCollector from './collector/browser';
 import MetaConfig from './config/metaconfig';
-import Miner from './core/miner'
-
-console.log(ENV);
-let num = 19;
-console.log(num.toString(16));
+import { container } from './core/container';
+import { TERMINALS } from "./core/constants";
 
 let collector = null;
 let configer = null;
-if (TERMINAL == 'h5') {
+if (TERMINAL == TERMINALS.H5) {
     collector = new browserCollector();
     configer = new MetaConfig();
 }
 
 
 let miner = new Miner(configer, collector);
+container.register('miner', miner);
 miner.init();
 

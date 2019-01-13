@@ -21,6 +21,7 @@ class Miner {
     constructor(configurer, collector) {
         this._configurer = configurer;
         this._collector = collector;
+        this._terminal = TERMINAL;
     }
 
     init() {
@@ -32,7 +33,8 @@ class Miner {
         baseInfo['ulm-cnt'] = this._configurer.get(CONFIG.ULM_CNT);
         let url = LOG_SERVER + LOG_KEY + '?' + buildQuery(Object.assign(baseInfo, {
             time: Math.round((new Date()).getTime() / 1000),
-            logid: this.logid()
+            logid: this.logid(),
+            mnrver: MINER_VERSION,
         }));
         get(url);
     }

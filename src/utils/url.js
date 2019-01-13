@@ -20,3 +20,14 @@ export function buildQuery(obj) {
     return query.length > 0? query.substr(1): '';
 }
 
+
+
+export function getQuery(url, name) {
+    if (! url) {
+        return null;
+    }
+    let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    let r = url.substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return null;
+}
