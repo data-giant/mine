@@ -18,17 +18,18 @@ import {TERMINALS} from "./constants";
 class Container {
     constructor() {
         this._store = {};
+        this._protected = new Set(['miner']);
     }
 
     register(name, inst) {
+        if (this._store[name] && this._protected.has(name)) {
+            return ;
+        }
         this._store[name] = inst;
     }
 
     resolve(name) {
-        if (name in this._store) {
-            return this._store[name];
-        }
-        return null;
+        return this._store[name];
     }
 }
 
@@ -37,10 +38,13 @@ let container = new Container();
 /**
  * Exposure to different global objects, according to the TERMINAL.
  */
-if (TERMINALS == TERMINALS.H5) {
-    window.register = container.register;
-    window.resolve = container.resolve;
+let global = null;
+if (TERMINAL == TERMINALS.H5) {
+    global = window;
 }
+
+global.register = (n, i) => container.register(n, i);
+global.resolve = (n) => container.resolve(n);
 
 export { container };
 
