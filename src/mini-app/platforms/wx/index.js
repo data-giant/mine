@@ -11,10 +11,10 @@
  *
  */
 
-'use strict';
-import { install } from './context'
-import { Miner } from '../../core/miner'
 
-install();
+'use strict';
+import { Miner } from '../../core/miner'
+import { install as wxInstaller } from "./context";
 
 export const miner = new Miner();
+export const install = wxInstaller;

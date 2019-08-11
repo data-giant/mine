@@ -19,7 +19,7 @@ import { getCtx } from './context';
 import { EVENTS, HTTP_METHOD } from '../../core/constants'
 import { recognize } from './anonymity';
 import { getQuery } from '../../utils/url'
-import {getOpenId, getUserId} from "./user";
+import { getOpenId, getUserId } from "./user";
 
 export class Miner {
     /**

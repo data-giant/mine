@@ -24,6 +24,7 @@ class Context extends BaseContext {
             os: UNKNOW,
         };
     }
+
     getRequest() {
         return wx.request;
     }

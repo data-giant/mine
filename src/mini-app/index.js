@@ -14,19 +14,18 @@
 
 'use strict';
 import { miniapp } from "./core/detector";
-import { setUserId, setOpenId } from "./core/user";
+export { setUserId, setOpenId } from "./core/user";
 
 
 export function miner() {
     let miner = null;
     if (miniapp.isWX) {
-        miner = require('./platforms/wx');
+        let wxmapp = require('./platforms/wx');
+        miner = wxmapp.miner;
+        wxmapp.install();
+    } else {
+
     }
     return miner;
 }
 
-export {
-    setUserId,
-    setOpenId,
-    miner,
-}

@@ -1,6 +1,6 @@
 {
-  "name": "miner",
-  "version": "0.0.1",
+  "name": "user-miner",
+  "version": "0.0.2",
   "description": "An event tracking tools for front-end",
   "main": "index.js",
   "scripts": {
