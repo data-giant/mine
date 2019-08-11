@@ -25,14 +25,20 @@ const EVENTS = {
     PAGE_VIEW: 2001,
     CLICK: 2101,
     EXPOSURE: 2201,
+    USER_DEFINE: 9999,
 };
 
 const TERMINALS = {
     H5: 'h5'
 };
 
+const HTTP_METHOD = {
+    GET: 'get',
+    POST: 'post',
+};
+
 const UNKNOW = 'unknow';
 
 
-export { EVENTS, CONFIG, UNKNOW, TERMINALS };
+export { EVENTS, CONFIG, UNKNOW, TERMINALS, HTTP_METHOD };
 
