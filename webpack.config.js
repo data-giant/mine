@@ -42,9 +42,10 @@ let definePlugin = new webpack.DefinePlugin(Object.assign(env, {
 
 
 const defaultConfig = {};
+let mode = argv.env == 'prod'? 'production': 'development';
 
 let config = {
-    mode: argv.env == 'prod'? 'production': 'development',
+    mode,
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -56,4 +57,18 @@ let config = {
 
 };
 
-module.exports = config;
+let mappCfg = {
+    mode,
+    entry: './src/mini-app/index.js',
+    output: {
+        path: path.resolve(__dirname, 'lib'),
+        filename: 'mapp-miner.js',
+        library: 'userMiner',
+        libraryTarget: 'commonjs2'
+    },
+    plugins: [
+        definePlugin
+    ]
+};
+
+module.exports = mappCfg;
