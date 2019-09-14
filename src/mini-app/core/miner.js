@@ -115,7 +115,7 @@ export class Miner {
         if (!this._meta['ulm_lst']) {
             this._meta['ulm_lst'] = getQuery(loc.href, 'ulm') || '';
         }
-        let args = this._assemble(EVENTS.PAGE_VIEW, event, pageCfg);
+        let args = this._assemble(EVENTS.PAGE_VIEW, null, pageCfg);
         this._mine(EVENTS.PAGE_VIEW, args);
     }
 
@@ -132,7 +132,7 @@ export class Miner {
             arg3: '',
             args: {
                 ...eventArgs,
-                ulm_cnt: this.getPageULM(this.getCurPage()).join('.') + '0.0',
+                ulm_cnt: this.getPageULM(this.getCurPage()).join('.') + '.0.0',
                 ulm_lst: this._meta['ulm_lst'],
             }
         }

@@ -19,7 +19,7 @@ export { setUserId, setOpenId } from "./core/user";
 
 export function miner() {
     let miner = null;
-    if (miniapp.isWX) {
+    if (miniapp.isWX()) {
         let wxmapp = require('./platforms/wx');
         miner = wxmapp.miner;
         wxmapp.install();

@@ -12,14 +12,14 @@
  */
 
 'use strict';
-import { miniapp } from 'detector';
+import { miniapp } from './detector';
 import { request } from '../platforms/wx';
 
 export class Context {
     constructor() {
-        if (miniapp.isAP || miniapp.isDD) {
+        if (miniapp.isAP() || miniapp.isDD()) {
             this.request = null;
-        } else if (miniapp.isWX) {
+        } else if (miniapp.isWX()) {
             this.request = request;
         } else {
             throw new Error("Unsupport mini app platforms");

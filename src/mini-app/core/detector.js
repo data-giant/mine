@@ -13,14 +13,20 @@
 
 'use strict';
 
-export const isWeb = typeof navigator === 'object' && (navigator.appCodeName === 'Mozilla' || navigator.product === 'Gecko');
-export const isNode = typeof process !== 'undefined' && !!(process.versions && process.versions.node);
-export const isWeex = typeof callNative === 'function' || typeof WXEnvironment === 'object' && WXEnvironment.platform !== 'Web';
-export const isReactNative = typeof __fbBatchedBridgeConfig !== 'undefined';
+function isAP() {
+    return typeof my === 'object' && my.ap;
+}
 
+function isDD() {
+    return typeof my === 'object' && my.dd;
+}
+
+function isWX() {
+    return typeof wx === 'object';
+}
 
 export const miniapp = {
-    isAP: typeof my === 'object' && my.ap,
-    isDD: typeof my === 'object' && my.dd,
-    isWX: typeof wx === 'object',
+    isAP,
+    isDD,
+    isWX
 };

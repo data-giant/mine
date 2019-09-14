@@ -26,7 +26,7 @@ class Context extends BaseContext {
     }
 
     getRequest() {
-        return wx.request;
+        return { request: wx.request };
     }
 
     getStorageManager() {
